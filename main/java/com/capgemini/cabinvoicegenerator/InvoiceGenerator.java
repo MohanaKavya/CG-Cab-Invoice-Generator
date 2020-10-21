@@ -14,6 +14,15 @@ public class InvoiceGenerator {
 		private static final double MINIMUM_COST_PER_KM = 10.0;
 		private static final int COST_PER_TIME = 1;
 		private static final double MINIMUM_FARE = 5.0;
+		private final RideRepository USER_RIDES;
+
+		public InvoiceGenerator() {
+			this.USER_RIDES = null;
+		}
+
+		public InvoiceGenerator(int userId, Ride[] rides) {
+			USER_RIDES = new RideRepository(userId, rides);
+		}
 		
 		/**
 		 * @param distance
@@ -36,7 +45,8 @@ public class InvoiceGenerator {
 		 * @return Invoice Summary
 		 */
 		// Method to Calculate Total Fare for Multiple Rides and Return Invoice Summary
-		public InvoiceSummary calculateFare(Ride[] rides) {
+		public InvoiceSummary calculateFare(int userId) {
+			Ride[] rides = USER_RIDES.getRides(userId);
 			double totalFare = 0.0;
 			for (Ride ride : rides) {
 				totalFare += this.calculateFare(ride.distance, ride.time);

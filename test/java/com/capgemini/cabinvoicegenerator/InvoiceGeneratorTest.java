@@ -39,10 +39,12 @@ public class InvoiceGeneratorTest {
 	// uc2
 	@Test
 	public void givenMultipleRidesShouldReturnInvoiceSummary() {
+		int userId = 123;
 		Ride[] rides = { new Ride(2.0, 5), new Ride(0.1, 1) };
-		InvoiceSummary invoiceSummary = invoiceGenerator.calculateFare(rides);
+		InvoiceGenerator cabInvoiceGenerator = new InvoiceGenerator(userId, rides);
+		InvoiceSummary actualInvoiceSummary = cabInvoiceGenerator.calculateFare(userId);
 		InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2, 30.0);
-		Assert.assertEquals(expectedInvoiceSummary.toString(), invoiceSummary.toString());
+		Assert.assertEquals(expectedInvoiceSummary.toString(), actualInvoiceSummary.toString());
 	}
 }
 
