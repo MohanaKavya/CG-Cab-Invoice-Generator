@@ -33,15 +33,15 @@ public class InvoiceGenerator {
 
 		/**
 		 * @param rides
-		 * @return fare
+		 * @return Invoice Summary
 		 */
-		// Method to Calculate Total Fare for Multiple Rides
-		public double calculateFare(Ride[] rides) {
+		// Method to Calculate Total Fare for Multiple Rides and Return Invoice Summary
+		public InvoiceSummary calculateFare(Ride[] rides) {
 			double totalFare = 0.0;
 			for (Ride ride : rides) {
 				totalFare += this.calculateFare(ride.distance, ride.time);
 			}
-			return totalFare;
+			return new InvoiceSummary(rides.length, totalFare);
 		}
 	}
 
