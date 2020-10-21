@@ -31,5 +31,19 @@ public class InvoiceGenerator {
 		log.info("Welcome to the Cab Invoice Generator System.");
 	}
 
+		/**
+		 * @param rides
+		 * @return fare
+		 */
+		// Method to Calculate Total Fare for Multiple Rides
+		public double calculateFare(Ride[] rides) {
+			double totalFare = 0.0;
+			for (Ride ride : rides) {
+				totalFare += this.calculateFare(ride.distance, ride.time);
+			}
+			return totalFare;
+		}
+	}
+
 	
-}
+
